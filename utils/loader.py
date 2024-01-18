@@ -18,8 +18,7 @@ def load_llm(model_path: str, temperature: float = 0.0, ctx_size: int = 4096):
         verbose=False,
         temperature=temperature,
         stop=["<|end_of_turn|>", "<|endoftext|>", "<|im_start|>", "<|im_end|>", "</s>", "Human:", "AI:",
-              "Assistant:",
-              "### System:", "### User:", "### Assistant:", "<|prompter|>", "<|assistant|>"],
+              "Assistant:", "### System:", "### User:", "### Assistant:", "<|prompter|>", "<|assistant|>"],
     )
 
 
@@ -105,8 +104,8 @@ def load_dolphin(system_prompt: str = "", temperature: float = 0.0):
 
 
 def load_dolphin_dpo_laser_llm(temperature: float = 0.0):
-    return load_llm(model_path="/home/airat/LLMs/dolphin-2.6-mistral-7b-dpo-laser.Q4_K_M.gguf",
-                    temperature=temperature, ctx_size=16384)
+    return load_llm(model_path="/home/airat/LLMs/dolphin-2.6-mistral-7b-dpo-laser.Q4_K_M.gguf", temperature=temperature,
+                    ctx_size=16384)
 
 
 def load_dolphin_dpo_laser(system_prompt: str = "", temperature: float = 0.0):
