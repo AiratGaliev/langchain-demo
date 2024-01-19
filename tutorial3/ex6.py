@@ -4,7 +4,7 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
 
-from utils.loader import load_openhermes_llm
+from utils.loaders import load_openhermes_llm
 
 llm = load_openhermes_llm()
 

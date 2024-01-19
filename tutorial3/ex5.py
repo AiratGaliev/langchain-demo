@@ -2,7 +2,7 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationKGMemory
 from langchain.prompts.prompt import PromptTemplate
 
-from utils.loader import load_openhermes_llm
+from utils.loaders import load_openhermes_llm
 
 llm = load_openhermes_llm()
 

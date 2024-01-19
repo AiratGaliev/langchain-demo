@@ -1,7 +1,7 @@
 from langchain_experimental.pal_chain import PALChain
 from langchain_experimental.utilities import PythonREPL
 
-from utils.loader import load_openhermes
+from utils.loaders import load_openhermes
 
 llm = load_openhermes()
 

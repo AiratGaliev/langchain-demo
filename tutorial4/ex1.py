@@ -1,7 +1,7 @@
 # https://colab.research.google.com/drive/13P3DLQEfjG1xjLKd9UT9-IozsDomXrFJ#scrollTo=VkVTT54xNq8T
 from langchain_experimental.pal_chain import PALChain
 
-from utils.loader import load_openhermes
+from utils.loaders import load_openhermes
 
 llm = load_openhermes()
 

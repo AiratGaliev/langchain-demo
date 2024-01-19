@@ -5,7 +5,7 @@ from langchain.utilities import DuckDuckGoSearchAPIWrapper
 from langchain.utilities import PythonREPL
 from langchain.utilities import WikipediaAPIWrapper
 
-from utils.loader import load_openhermes
+from utils.loaders import load_openhermes
 
 llm = load_openhermes()
 python_repl = PythonREPL()

@@ -8,7 +8,7 @@ from langchain.document_loaders import UnstructuredEPubLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 
-from utils.loader import load_dolphin_dpo_laser, load_bge_base_angle_emb
+from utils.loaders import load_dolphin_dpo_laser, load_bge_base_angle_emb
 
 system_prompt = """
 Your name is Ash Maurya. You are an expert at Lean Startups.

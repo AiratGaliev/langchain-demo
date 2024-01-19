@@ -5,7 +5,7 @@ from langchain.docstore.document import Document
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
 
-from utils.loader import load_xdan_llm
+from utils.loaders import load_xdan_llm
 
 llm = load_xdan_llm()
 

@@ -5,7 +5,7 @@ from langchain.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 
-from utils.loader import load_openhermes_llm, load_bge_base_angle_emb
+from utils.loaders import load_openhermes_llm, load_bge_base_angle_emb
 
 llm = load_openhermes_llm()
 

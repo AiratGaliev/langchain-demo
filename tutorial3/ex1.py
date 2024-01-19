@@ -1,7 +1,7 @@
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferMemory
 
-from utils.loader import load_openhermes_llm
+from utils.loaders import load_openhermes_llm
 
 llm = load_openhermes_llm()
 

@@ -3,7 +3,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores.faiss import FAISS
 from pypdf import PdfReader
 
-from utils.loader import load_openhermes_llm, load_gte_base_emb
+from utils.loaders import load_openhermes_llm, load_gte_base_emb
 
 embedding = load_gte_base_emb()
 

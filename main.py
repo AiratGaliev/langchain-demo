@@ -1,4 +1,4 @@
-from utils.loader import load_openhermes
+from utils.loaders import load_openhermes
 
 model = load_openhermes()
 

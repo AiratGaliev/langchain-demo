@@ -4,7 +4,7 @@ from langchain.agents import Tool, initialize_agent, AgentType
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.tools import DuckDuckGoSearchRun
 
-from utils.loader import load_dolphin_dpo_laser
+from utils.loaders import load_dolphin_dpo_laser
 
 fixed_prompt = '''Assistant is a large language model trained by OpenAI.
 

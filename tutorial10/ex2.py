@@ -4,7 +4,7 @@ from langchain.agents import Tool, initialize_agent, AgentType
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from tools.web_page import WebPageTool
-from utils.loader import load_openchat
+from utils.loaders import load_dolphin_dpo_laser
 
 fixed_prompt = '''Assistant is a large language model trained by OpenAI.
 
@@ -16,7 +16,7 @@ Assistant also doesn't know information about content on webpages and should alw
 
 Overall, Assistant is a powerful system that can help with a wide range of tasks and provide valuable insights and information on a wide range of topics. Whether you need help with a specific question or just want to have a conversation about a particular topic, Assistant is here to assist.'''
 
-llm = load_openchat(system_prompt=fixed_prompt)
+llm = load_dolphin_dpo_laser(system_prompt=fixed_prompt)
 
 page_getter = WebPageTool()
 

@@ -247,8 +247,8 @@ class LlamaCpp(LLM):
         """
 
         # Raise error if stop sequences are in both input and default params
-        if self.stop and stop is not None:
-            raise ValueError("`stop` found in both the input and default params.")
+        # if self.stop and stop is not None:
+        #     raise ValueError("`stop` found in both the input and default params.")
 
         params = self._default_params
 

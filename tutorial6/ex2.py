@@ -1,6 +1,6 @@
 from langchain.chains import LLMSummarizationCheckerChain
 
-from utils.loader import load_xdan_llm
+from utils.loaders import load_xdan_llm
 
 llm = load_xdan_llm()
 

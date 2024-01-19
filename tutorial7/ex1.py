@@ -3,7 +3,7 @@ from langchain.chains.constitutional_ai.models import ConstitutionalPrinciple
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
-from utils.loader import load_xdan
+from utils.loaders import load_xdan
 
 llm = load_xdan()
 

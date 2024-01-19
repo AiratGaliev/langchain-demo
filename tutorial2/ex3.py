@@ -1,7 +1,7 @@
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
-from utils.loader import load_openhermes
+from utils.loaders import load_openhermes
 
 system_prompt = "You are a helpful history professor named Kate."
 

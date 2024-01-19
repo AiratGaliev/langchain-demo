@@ -15,24 +15,3 @@ def alpaca_template(system_prompt: str = ""):
     if system_prompt != "":
         template_str = "{system_prompt}\n\n".format(system_prompt=system_prompt) + template_str
     return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)
-
-
-def openchat_template(system_prompt: str = ""):
-    template_str = "GPT4 Correct User: {prompt}<|end_of_turn|>GPT4 Correct Assistant:"
-    if system_prompt != "":
-        template_str = "{system_prompt}<|end_of_turn|>".format(system_prompt=system_prompt) + template_str
-    return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)
-
-
-def amazon_template(system_prompt: str = ""):
-    template_str = "<|prompter|>{prompt}</s><|assistant|>"
-    if system_prompt != "":
-        template_str = "<|prompter|>" + system_prompt + " {prompt}</s><|assistant|>"
-    return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)
-
-
-def solar_instruct_template(system_prompt: str = ""):
-    template_str = "### User:\n{prompt}\n\n### Assistant:"
-    if system_prompt != "":
-        template_str = "### System:\n{system_prompt}\n\n".format(system_prompt=system_prompt) + template_str
-    return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)

@@ -5,7 +5,7 @@ from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 
-from utils.loader import load_bge_base_angle_emb
+from utils.loaders import load_bge_base_angle_emb
 
 loader = DirectoryLoader('../resources/new_articles', glob="./*.txt", loader_cls=TextLoader)
 

@@ -6,7 +6,7 @@ from langchain.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 
-from utils.loader import load_dolphin_dpo_laser, load_bge_base_angle_emb
+from utils.loaders import load_dolphin_dpo_laser, load_bge_base_angle_emb
 
 llm = load_dolphin_dpo_laser()
 
