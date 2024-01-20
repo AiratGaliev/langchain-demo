@@ -1,8 +1,8 @@
 from crewai import Agent, Task, Process, Crew
 
-from utils.loaders import load_neuralbeagle14_llm
+from utils.loaders import load_dolphin_dpo_laser_llm
 
-llm = load_neuralbeagle14_llm()
+llm = load_dolphin_dpo_laser_llm()
 
 researcher = Agent(
     role="Researcher",
@@ -22,8 +22,9 @@ writer = Agent(
     llm=llm
 )
 
-task1 = Task(description="Investigate the latest AI trends. Don't use any tools.", agent=researcher)
-task2 = Task(description="Write a compelling blog post based on the latest AI trends. Don't use any tools.", agent=writer)
+task1 = Task(description="Investigate the latest AI trends. Don't need to use a tool.", agent=researcher)
+task2 = Task(description="Write a compelling blog post based on the latest AI trends. Don't need to use a tool.",
+             agent=writer)
 
 crew = Crew(agents=[researcher, writer], tasks=[task1, task2], verbose=2, process=Process.sequential)
 

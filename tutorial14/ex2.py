@@ -1,8 +1,8 @@
 from crewai import Agent, Task, Process, Crew
 
-from utils.loaders import load_neuralbeagle14_llm
+from utils.loaders import load_dolphin_dpo_laser_llm
 
-llm = load_neuralbeagle14_llm(temperature=0.1)
+llm = load_dolphin_dpo_laser_llm()
 
 marketer = Agent(
     role="Market Research Analyst",

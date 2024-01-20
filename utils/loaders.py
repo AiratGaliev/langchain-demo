@@ -17,7 +17,8 @@ def load_llm(model_path: str, temperature: float = 0.0, ctx_size: int = 4096):
         verbose=False,
         temperature=temperature,
         stop=["<|end_of_turn|>", "<|endoftext|>", "<|im_start|>", "<|im_end|>", "</s>", "Human:", "AI:",
-              "Assistant:", "### System:", "### User:", "### Assistant:", "<|prompter|>", "<|assistant|>"],
+              "Assistant:", "### System:", "### User:", "### Assistant:", "<|prompter|>", "<|assistant|>",
+              "\nObservation"]
     )
 
 
@@ -100,12 +101,3 @@ def load_neuralmarcoro_llm(temperature: float = 0.0):
 
 def load_neuralmarcoro(system_prompt: str = "", temperature: float = 0.0):
     return alpaca_template(system_prompt) | load_neuralmarcoro_llm(temperature=temperature)
-
-
-def load_neuralbeagle14_llm(temperature: float = 0.0):
-    return load_llm(model_path="/home/airat/LLMs/neuralbeagle14-7b.Q4_K_M.gguf", temperature=temperature,
-                    ctx_size=16384)
-
-
-def load_neuralbeagle14(system_prompt: str = "", temperature: float = 0.0):
-    return chat_ml_template(system_prompt) | load_neuralbeagle14_llm(temperature=temperature)
