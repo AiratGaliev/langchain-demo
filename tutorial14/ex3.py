@@ -10,28 +10,27 @@ def string_length(string: str) -> int:
     return len(string)
 
 
-calculate_tool = Tool(
-    name='String length',
+string_tool = Tool(
+    name='String tool',
     func=string_length,
-    description="Useful to get string length.",
+    description="Useful to work with strings.",
 )
 
-
-calculator = Agent(
-    role="Calculator",
+agent = Agent(
+    role="Custom Agent",
     goal="Use tools",
-    backstory="Expert, that doesn't know anything but uses tools",
+    backstory="Expert in the use of tools",
     verbose=True,
     llm=llm,
-    tools=[calculate_tool]
+    tools=[string_tool]
 )
 
 task1 = Task(
-    description="I want to know this string length: hello world",
-    agent=calculator
+    description="I want to know the result of passing this string: hello world",
+    agent=agent
 )
 
-crew = Crew(agents=[calculator], tasks=[task1], verbose=2, process=Process.sequential)
+crew = Crew(agents=[agent], tasks=[task1], verbose=2, process=Process.sequential)
 
 if __name__ == '__main__':
     result = crew.kickoff()
