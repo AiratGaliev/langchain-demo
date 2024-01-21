@@ -1,8 +1,7 @@
 from crewai import Agent, Task, Process, Crew
+from langchain_openai import ChatOpenAI
 
-from utils.loaders import load_dolphin_dpo_laser_llm
-
-llm = load_dolphin_dpo_laser_llm()
+llm = ChatOpenAI(openai_api_base="http://localhost:1234/v1", openai_api_key="key", temperature=0.0)
 
 researcher = Agent(
     role="Researcher",

@@ -1,9 +1,9 @@
 from crewai import Agent, Task, Crew, Process
 from langchain.tools import tool
 
-from utils.loaders import load_dolphin_llm
+from langchain_openai import ChatOpenAI
 
-llm = load_dolphin_llm()
+llm = ChatOpenAI(openai_api_base="http://localhost:1234/v1", openai_api_key="key", temperature=0.4)
 
 
 @tool
@@ -23,8 +23,7 @@ calculator = Agent(
 )
 
 calculate = Task(
-    description="Pass two numbers 3 and 10 to the calculator separated by a comma. Give the result.",
-    agent=calculator
+    description="Pass two numbers 3 and 10 to the calculator separated by a comma. Give the result.", agent=calculator
 )
 
 crew = Crew(agents=[calculator], tasks=[calculate], verbose=2, process=Process.sequential)

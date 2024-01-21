@@ -1,8 +1,8 @@
 from crewai import Agent, Task, Process, Crew
 
-from utils.loaders import load_dolphin_dpo_laser_llm
+from langchain_openai import ChatOpenAI
 
-llm = load_dolphin_dpo_laser_llm()
+llm = ChatOpenAI(openai_api_base="http://localhost:1234/v1", openai_api_key="key", temperature=0.0)
 
 marketer = Agent(
     role="Market Research Analyst",
@@ -44,7 +44,7 @@ business_consultant = Agent(
 task1 = Task(
     description="""Analyze what the market demand for plugs for holes in crocs (shoes) so that this iconic footware looks less like swiss cheese. 
 		Write a detailed report with description of what the ideal customer might look like, and how to reach the widest possible audience. The report has to 
-		be concise with at least 10 bullet points and it has to address the most important areas when it comes to marketing this type of business. Don't use any tools.
+		be concise with at least 10 bullet points and it has to address the most important areas when it comes to marketing this type of business. Don't need to use a tool.
     """,
     agent=marketer,
 )
@@ -52,7 +52,7 @@ task1 = Task(
 task2 = Task(
     description="""Analyze how to produce plugs for crocs (shoes) so that this iconic footware looks less like swiss cheese.. Write a detailed report 
 		with description of which technologies the business needs to use in order to make High Quality T shirts. The report has to be concise with 
-		at least 10  bullet points and it has to address the most important areas when it comes to manufacturing this type of business. Don't use any tools.
+		at least 10  bullet points and it has to address the most important areas when it comes to manufacturing this type of business. Don't need to use a tool.
     """,
     agent=technologist,
 )
@@ -61,17 +61,14 @@ task3 = Task(
     description="""Analyze and summarize marketing and technological report and write a detailed business plan with 
 		description of how to make a sustainable and profitable "plugs for crocs (shoes) so that this iconic footware looks less like swiss cheese" business. 
 		The business plan has to be concise with 
-		at least 10  bullet points, 5 goals and it has to contain a time schedule for which goal should be achieved and when. Don't use any tools.
+		at least 10  bullet points, 5 goals and it has to contain a time schedule for which goal should be achieved and when. Don't need to use a tool.
     """,
     agent=business_consultant,
 )
 
-crew = Crew(
-    agents=[marketer, technologist, business_consultant],
-    tasks=[task1, task2, task3],
-    verbose=2,
-    process=Process.sequential
-)
+crew = Crew(agents=[marketer, technologist, business_consultant], tasks=[task1, task2, task3], verbose=2,
+            process=Process.sequential)
+
 if __name__ == '__main__':
     result = crew.kickoff()
     print("######################")

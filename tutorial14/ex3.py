@@ -1,9 +1,9 @@
 from crewai import Agent, Task, Crew, Process
 from langchain.agents import Tool
 
-from utils.loaders import load_dolphin_llm
+from langchain_openai import ChatOpenAI
 
-llm = load_dolphin_llm()
+llm = ChatOpenAI(openai_api_base="http://localhost:1234/v1", openai_api_key="key", temperature=0.0)
 
 
 def string_length(string: str) -> int:

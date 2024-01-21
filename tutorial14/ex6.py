@@ -8,10 +8,11 @@ from langchain.document_loaders import TextLoader
 from langchain.document_loaders import UnstructuredEPubLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
+from langchain_openai import ChatOpenAI
 
-from utils.loaders import load_dolphin_llm, load_bge_base_angle_emb
+from utils.loaders import load_bge_base_angle_emb
 
-llm = load_dolphin_llm()
+llm = ChatOpenAI(openai_api_base="http://localhost:1234/v1", openai_api_key="key", temperature=0.0)
 
 loader = DirectoryLoader('../resources/ash_maurya/', glob="./*.txt", loader_cls=TextLoader)
 documents = loader.load()
