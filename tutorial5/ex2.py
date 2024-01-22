@@ -10,7 +10,7 @@ llm = load_xdan_llm()
 
 text_splitter = CharacterTextSplitter()
 
-with open('../resources/about_java.txt') as f:
+with open('../resources/test_rag_docs/test_rag.txt') as f:
     about_java = f.read()
 texts = text_splitter.split_text(about_java)
 

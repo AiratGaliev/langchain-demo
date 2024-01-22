@@ -10,14 +10,14 @@ from utils.loaders import load_dolphin_dpo_laser, load_bge_base_angle_emb
 
 llm = load_dolphin_dpo_laser()
 
-loader = PyPDFDirectoryLoader(path='../resources/new_papers')
+loader = PyPDFDirectoryLoader(path='../resources/test_rag_docs')
 
 documents = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 texts = text_splitter.split_documents(documents)
 
-persist_directory = 'db'
+persist_directory = 'test_rag_docs_pdf'
 embedding = load_bge_base_angle_emb()
 if not os.path.exists(persist_directory):
     vectordb = Chroma.from_documents(documents=texts, embedding=embedding, persist_directory=persist_directory)
@@ -51,19 +51,16 @@ def process_llm_response(llm_response):
 
 
 if __name__ == '__main__':
-    response = qa_chain("What is Flash attention?")
+    response = qa_chain("When Seraphina Celestia Moonshadow was born?")
     process_llm_response(response)
-    response = qa_chain("What does IO-aware mean?")
+    response = qa_chain("Where Seraphina Celestia Moonshadow was born?")
     process_llm_response(response)
-    response = qa_chain("What is tiling in flash-attention?")
+    response = qa_chain("Where did Seraphina venture on her quest for knowledge, and what did she discover there?")
     process_llm_response(response)
-    response = qa_chain("What is toolformer?")
+    response = qa_chain("Can you elaborate on Seraphina's unique ability and its manifestation during her childhood?")
     process_llm_response(response)
-    response = qa_chain("What tools can be used with toolformer?")
+    response = qa_chain("Where did Seraphina venture on her quest for knowledge, and what did she discover there?")
     process_llm_response(response)
-    response = qa_chain("How many examples do we need to provide for each tool?")
-    process_llm_response(response)
-    response = qa_chain("What are the best retrieval augmentations for LLMs?")
-    process_llm_response(response)
-    response = qa_chain("What are the differences between REALM and RAG?")
+    response = qa_chain(
+        "What did Seraphina accomplish in her later years that solidified her reputation in Etherialand?")
     process_llm_response(response)

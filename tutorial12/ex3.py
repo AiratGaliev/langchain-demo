@@ -9,14 +9,14 @@ from utils.loaders import load_openhermes_llm, load_bge_base_angle_emb
 
 llm = load_openhermes_llm()
 
-loader = PyPDFDirectoryLoader(path='../resources/new_papers')
+loader = PyPDFDirectoryLoader(path='../resources/test_rag_docs')
 
 documents = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 texts = text_splitter.split_documents(documents)
 
-persist_directory = 'db'
+persist_directory = 'test_rag_docs_pdf'
 embedding = load_bge_base_angle_emb()
 if not os.path.exists(persist_directory):
     vectordb = Chroma.from_documents(documents=texts, embedding=embedding, persist_directory=persist_directory)
@@ -37,5 +37,5 @@ def process_llm_response(llm_response):
 
 
 if __name__ == '__main__':
-    response = rqa("What does gpt-4 mean for creativity?")
+    response = rqa("When Seraphina Celestia Moonshadow was born?")
     process_llm_response(response)

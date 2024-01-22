@@ -5,7 +5,7 @@ from utils.loaders import load_xdan_llm
 
 llm = load_xdan_llm()
 
-with open('../resources/about_java.txt') as f:
+with open('../resources/test_rag_docs/test_rag.txt') as f:
     about_java = f.read()
 
 fact_extraction_prompt = PromptTemplate(

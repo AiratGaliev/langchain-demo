@@ -1,37 +1,24 @@
-from langchain.chains.question_answering import load_qa_chain
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains import RetrievalQA
+from langchain.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores.faiss import FAISS
-from pypdf import PdfReader
 
-from utils.loaders import load_openhermes_llm, load_gte_base_emb
+from utils.loaders import load_openhermes_16k_llm, load_bge_base_angle_emb
 
-embedding = load_gte_base_emb()
+embedding = load_bge_base_angle_emb()
 
-llm = load_openhermes_llm()
+llm = load_openhermes_16k_llm()
 
-doc_reader = PdfReader('../resources/impromptu-rh.pdf')
+loader = PyPDFLoader(file_path='../resources/test_rag_docs/test_rag.pdf')
 
-raw_text = ''
-for i, page in enumerate(doc_reader.pages):
-    text = page.extract_text()
-    if text:
-        raw_text += text
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
-text_splitter = CharacterTextSplitter(
-    separator="\n",
-    chunk_size=1000,
-    chunk_overlap=200,
-    length_function=len,
-)
+documents = loader.load_and_split(text_splitter=text_splitter)
 
-texts = text_splitter.split_text(raw_text)
+docsearch = FAISS.from_documents(documents, embedding)
+retriever = docsearch.as_retriever()
 
-docsearch = FAISS.from_texts(texts, embedding)
-
-chain = load_qa_chain(llm, chain_type="stuff", verbose=True)
-
-query = "who are the authors of the book?"
-docs = docsearch.similarity_search(query)
+qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=True)
 
 if __name__ == '__main__':
-    print(chain.run(input_documents=docs, question=query))
+    qa_chain("Where Seraphina Celestia Moonshadow was born?")

@@ -1,33 +1,24 @@
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains import RetrievalQA
+from langchain.document_loaders import PyPDFDirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores.faiss import FAISS
-from pypdf import PdfReader
 
-from utils.loaders import load_gte_base_emb
+from utils.loaders import load_openhermes_16k_llm, load_bge_base_angle_emb
 
-embedding = load_gte_base_emb()
+embedding = load_bge_base_angle_emb()
 
-doc_reader = PdfReader('../resources/impromptu-rh.pdf')
+llm = load_openhermes_16k_llm()
 
-raw_text = ''
-for i, page in enumerate(doc_reader.pages):
-    text = page.extract_text()
-    if text:
-        raw_text += text
+loader = PyPDFDirectoryLoader(path='../resources/test_rag_docs')
 
-text_splitter = CharacterTextSplitter(
-    separator="\n",
-    chunk_size=1000,
-    chunk_overlap=200,
-    length_function=len,
-)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 
-texts = text_splitter.split_text(raw_text)
+documents = loader.load_and_split(text_splitter=text_splitter)
 
-docsearch = FAISS.from_texts(texts, embedding)
+docsearch = FAISS.from_documents(documents, embedding)
+retriever = docsearch.as_retriever()
 
-query = "how does GPT-4 change social media?"
-docs = docsearch.similarity_search(query)
+qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=True)
 
 if __name__ == '__main__':
-    print(len(docs))
-    print(docs)
+    qa_chain("Who are the authors of the document?")
