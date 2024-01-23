@@ -6,3 +6,4 @@ test_rag_docs_db/
 *.sqlite3
 *.bin
 *.pickle
+.cache

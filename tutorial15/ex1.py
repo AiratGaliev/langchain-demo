@@ -1,3 +1,4 @@
+# it doesn't work, but just example how to implement it with autogen and openai
 import os
 
 import autogen
@@ -52,13 +53,13 @@ llm_config = {
     "functions": [
         {
             "name": "retrieve_content",
-            "description": "Answer any retrieve_content related questions",
+            "description": "Answer any questions",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "question": {
                         "type": "string",
-                        "description": "The question to ask in relation to retrieve_content",
+                        "description": "Use this function to answer any questions",
                     }
                 },
                 "required": ["question"],
@@ -76,7 +77,8 @@ assistant = autogen.AssistantAgent(
     name="assistant",
     llm_config=llm_config,
     is_termination_msg=termination_msg,
-    system_message="Reply TERMINATE in the end when everything is done."
+    system_message="Reply TERMINATE in the end when everything is done.",
+    function_map={"retrieve_content": retrieve_content}
 )
 
 user_proxy = autogen.UserProxyAgent(
@@ -84,7 +86,7 @@ user_proxy = autogen.UserProxyAgent(
     human_input_mode="NEVER",
     llm_config=llm_config,
     is_termination_msg=termination_msg,
-    max_consecutive_auto_reply=10,
+    max_consecutive_auto_reply=2,
     code_execution_config={"work_dir": "."},
     system_message="""Reply TERMINATE if the task has been solved at full satisfaction.
 Otherwise, reply CONTINUE, or the reason why the task is not solved yet.""",
@@ -97,12 +99,9 @@ if __name__ == '__main__':
         assistant,
         message="""
     Find the answers to the questions:
-    
-    1. How is Seraphina Celestia Moonshadow?
-    2. When Seraphina Celestia Moonshadow was born?
-    3. Where Seraphina Celestia Moonshadow was born?
-    4. Who played a significant role in Seraphina's upbringing, and what profession were they known for?
-    
+
+    1. When Seraphina Celestia Moonshadow was born?
+
     Start the work now.
     """
     )
