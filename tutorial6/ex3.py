@@ -6,7 +6,7 @@ from utils.loaders import load_xdan_llm
 llm = load_xdan_llm()
 
 with open('../resources/test_rag_docs/test_rag.txt') as f:
-    about_java = f.read()
+    test_rag = f.read()
 
 fact_extraction_prompt = PromptTemplate(
     input_variables=["text_input"],
@@ -17,7 +17,7 @@ fact_extraction_prompt = PromptTemplate(
 fact_extraction_chain = LLMChain(llm=llm, prompt=fact_extraction_prompt,
                                  verbose=True)
 
-facts = fact_extraction_chain.run(about_java)
+facts = fact_extraction_chain.run(test_rag)
 
 triples_prompt = PromptTemplate(
     input_variables=["facts"],
@@ -29,6 +29,6 @@ triples_chain = LLMChain(llm=llm, prompt=triples_prompt, verbose=True)
 triples = triples_chain.run(facts)
 
 if __name__ == '__main__':
-    print(len(about_java))
+    print(len(test_rag))
     print(len(triples))
     print(triples)

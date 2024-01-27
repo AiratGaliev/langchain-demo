@@ -1,9 +1,9 @@
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate, FewShotPromptTemplate
 
-from utils.loaders import load_openhermes
+from utils.loaders import load_dolphin
 
-llm = load_openhermes()
+llm = load_dolphin()
 
 examples = [
     {"word": "Happy", "antonym": "Sad"},

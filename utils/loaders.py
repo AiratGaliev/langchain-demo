@@ -84,3 +84,11 @@ def load_neuralmarcoro_llm(temperature: float = 0.0):
 
 def load_neuralmarcoro(system_prompt: str = "", temperature: float = 0.0):
     return alpaca_template(system_prompt) | load_neuralmarcoro_llm(temperature=temperature)
+
+
+def load_westlake_llm(temperature: float = 0.0):
+    return load_llm(model_path="/home/airat/LLMs/WestLake-7b-v2.Q4_K_M.gguf", temperature=temperature, ctx_size=8192)
+
+
+def load_westlake(system_prompt: str = "", temperature: float = 0.0):
+    return chat_ml_template(system_prompt) | load_westlake_llm(temperature=temperature)

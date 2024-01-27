@@ -12,8 +12,8 @@ llm = load_xdan_llm()
 text_splitter = CharacterTextSplitter()
 
 with open('../resources/test_rag_docs/test_rag.txt') as f:
-    about_java = f.read()
-texts = text_splitter.split_text(about_java)
+    test_rag = f.read()
+texts = text_splitter.split_text(test_rag)
 
 docs = [Document(page_content=t) for t in texts[:4]]
 
@@ -42,6 +42,6 @@ wrapped_text = textwrap.fill(output_summary['output_text'],
                              replace_whitespace=False)
 
 if __name__ == '__main__':
-    print(len(about_java))
+    print(len(test_rag))
     print(len(wrapped_text))
     print(wrapped_text)
