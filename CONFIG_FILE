@@ -1,0 +1,61 @@
+{
+    "host": "0.0.0.0",
+    "port": 1234,
+    "models": [
+        {
+            "model": "/home/airat/LLMs/zephyr-7b-beta.Q4_K_M.gguf",
+            "model_alias": "zephyr",
+            "chat_format": "zephyr",
+            "n_gpu_layers": 33,
+            "offload_kqv": true,
+            "n_threads": 12,
+            "n_batch": 512,
+            "n_ctx": 5120,
+            "cache": false
+        },
+        {
+            "model": "/home/airat/LLMs/xdan-l1-chat-rl-v1.Q4_K_M.gguf",
+            "model_alias": "xdan",
+            "chat_format": "openchat",
+            "n_gpu_layers": 33,
+            "offload_kqv": true,
+            "n_threads": 12,
+            "n_batch": 512,
+            "n_ctx": 5120,
+            "cache": false
+        },
+        {
+            "model": "/home/airat/LLMs/openhermes-2.5-mistral-7b-16k.Q4_K_M.gguf",
+            "model_alias": "openhermes",
+            "chat_format": "chatml",
+            "n_gpu_layers": 33,
+            "offload_kqv": true,
+            "n_threads": 12,
+            "n_batch": 512,
+            "n_ctx": 5120,
+            "cache": false
+        },
+        {
+            "model": "/home/airat/LLMs/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+            "model_alias": "mistral-instruct",
+            "chat_format": "mistral-instruct",
+            "n_gpu_layers": 33,
+            "offload_kqv": true,
+            "n_threads": 12,
+            "n_batch": 512,
+            "n_ctx": 5120,
+            "cache": false
+        },
+        {
+            "model": "/home/airat/LLMs/dolphin-2.6-mistral-7b-dpo-laser.Q4_K_M.gguf",
+            "model_alias": "dolphin",
+            "chat_format": "chatml",
+            "n_gpu_layers": 33,
+            "offload_kqv": true,
+            "n_threads": 12,
+            "n_batch": 512,
+            "n_ctx": 5120,
+            "cache": false
+        }
+    ]
+}

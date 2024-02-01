@@ -15,3 +15,11 @@ def alpaca_template(system_prompt: str = ""):
     if system_prompt != "":
         template_str = "{system_prompt}\n\n".format(system_prompt=system_prompt) + template_str
     return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)
+
+
+def functionary_template(system_prompt: str = ""):
+    template_str = "<|from|>user\n<|recipient|>all\n<|content|>{prompt}"
+    if system_prompt != "":
+        template_str = "<|from|>system\n<|recipient|>all\n<|content|>{system_prompt}".format(
+            system_prompt=system_prompt) + template_str
+    return {"prompt": RunnablePassthrough()} | ChatPromptTemplate.from_template(template_str)

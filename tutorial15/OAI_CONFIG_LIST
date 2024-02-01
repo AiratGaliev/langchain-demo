@@ -1,6 +1,11 @@
 [
     {
-        "model": "local-model",
+        "model": "functionary",
+        "api_key": "NULL",
+        "base_url": "http://localhost:1234/v1"
+    },
+    {
+        "model": "dolphin",
         "api_key": "NULL",
         "base_url": "http://localhost:1234/v1"
     }

@@ -18,5 +18,5 @@ if [ ! -d ".venv" ]; then
 else
     source .venv/bin/activate
 fi
-python3 main.py
+python3 -m llama_cpp.server --config_file CONFIG_FILE
 deactivate
